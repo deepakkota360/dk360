@@ -5,637 +5,223 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DK360 — Think. Challenge. Lead.</title>
 <meta name="description" content="Research tools, governance frameworks and advisory resources by Deepak Kota. Foresight. POV. Action.">
-<meta property="og:title" content="DK360 — Think. Challenge. Lead.">
-<meta property="og:description" content="Research tools, governance frameworks and advisory resources. Foresight. POV. Action.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --ink:    #08111f;
-  --ink2:   #0d1c35;
-  --gold:   #c8892a;
-  --gold2:  #e8b84b;
-  --cream:  #f7f3ec;
-  --mist:   #edeae3;
-  --text:   #2a3140;
-  --subtle: #6b7585;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Outfit', sans-serif;
-  background: var(--ink);
-  color: #fff;
-  overflow-x: hidden;
-}
-
-/* ── NOISE TEXTURE OVERLAY ── */
-body::before {
-  content: '';
-  position: fixed; inset: 0; z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-}
-
-/* ── HERO ── */
-.hero {
-  position: relative; z-index: 1;
-  min-height: 100vh;
-  display: flex; flex-direction: column;
-  background: linear-gradient(160deg, #060d1a 0%, #0a1628 45%, #0f1e38 100%);
-  overflow: hidden;
-}
-
-/* Grid lines */
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(200,137,42,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200,137,42,0.05) 1px, transparent 1px);
-  background-size: 64px 64px;
-  pointer-events: none;
-}
-
-/* Radial glow */
-.hero::after {
-  content: '';
-  position: absolute; top: -200px; right: -100px;
-  width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(200,137,42,0.09) 0%, transparent 65%);
-  pointer-events: none;
-}
-
-.hero-nav {
-  position: relative; z-index: 2;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 28px 6%;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-
-.nav-brand {
-  display: flex; align-items: center; gap: 14px;
-}
-
-.nav-badge {
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.68rem; font-weight: 700;
-  letter-spacing: 3px; text-transform: uppercase;
-  color: var(--gold);
-  border: 1px solid rgba(200,137,42,0.45);
-  padding: 6px 13px; border-radius: 4px;
-}
-
-.nav-tagline {
-  font-size: 0.75rem; font-weight: 300;
-  color: rgba(255,255,255,0.35);
-  letter-spacing: 1.5px;
-}
-
-.nav-links {
-  display: flex; gap: 28px; align-items: center;
-}
-
-.nav-links a {
-  font-size: 0.82rem; font-weight: 500;
-  color: rgba(255,255,255,0.50);
-  text-decoration: none; letter-spacing: 0.3px;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: rgba(255,255,255,0.90); }
-
-.hero-body {
-  position: relative; z-index: 2;
-  flex: 1; display: flex; flex-direction: column;
-  justify-content: center;
-  padding: 80px 6% 60px;
-  max-width: 900px;
-}
-
-.hero-eyebrow {
-  display: flex; align-items: center; gap: 12px;
-  margin-bottom: 28px;
-}
-.hero-eyebrow-line {
-  width: 36px; height: 1px; background: var(--gold); opacity: 0.7;
-}
-.hero-eyebrow-text {
-  font-size: 0.70rem; font-weight: 600; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--gold);
-}
-
-.hero-h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3rem, 6vw, 5.5rem);
-  font-weight: 300; line-height: 1.08;
-  color: #fff; letter-spacing: -0.02em;
-}
-.hero-h1 em {
-  font-style: italic; color: var(--gold2);
-  font-weight: 300;
-}
-
-.hero-sub {
-  margin-top: 24px;
-  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
-  font-weight: 300; line-height: 1.75;
-  color: rgba(255,255,255,0.55);
-  max-width: 580px;
-}
-
-.hero-actions {
-  display: flex; gap: 14px; flex-wrap: wrap;
-  margin-top: 40px;
-}
-
-.btn-primary {
-  padding: 13px 28px;
-  background: linear-gradient(135deg, var(--gold) 0%, #b07720 100%);
-  color: #fff; border: none; border-radius: 8px;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.88rem; font-weight: 600;
-  text-decoration: none; letter-spacing: 0.3px;
-  box-shadow: 0 4px 20px rgba(200,137,42,0.30);
-  transition: transform 0.15s, box-shadow 0.15s;
-  cursor: pointer;
-}
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(200,137,42,0.40); }
-
-.btn-ghost {
-  padding: 13px 28px;
-  background: transparent;
-  color: rgba(255,255,255,0.70);
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 8px;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.88rem; font-weight: 500;
-  text-decoration: none; letter-spacing: 0.3px;
-  transition: border-color 0.15s, color 0.15s;
-  cursor: pointer;
-}
-.btn-ghost:hover { border-color: rgba(200,137,42,0.5); color: #fff; }
-
-.hero-stats {
-  display: flex; gap: 40px; flex-wrap: wrap;
-  margin-top: 60px;
-  padding-top: 36px;
-  border-top: 1px solid rgba(255,255,255,0.07);
-}
-
-.stat-item { }
-.stat-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.2rem; font-weight: 600;
-  color: var(--gold2); line-height: 1;
-}
-.stat-label {
-  font-size: 0.72rem; font-weight: 400;
-  color: rgba(255,255,255,0.38);
-  letter-spacing: 0.5px; margin-top: 4px;
-}
-
-/* ── DIVIDER ── */
-.section-divider {
-  position: relative; z-index: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(200,137,42,0.3), transparent);
-}
-
-/* ── TOOLS / ARTEFACTS SECTION ── */
-.tools-section {
-  position: relative; z-index: 1;
-  background: #070e1a;
-  padding: 80px 6%;
-}
-
-.tools-section::before {
-  content: '';
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(200,137,42,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200,137,42,0.03) 1px, transparent 1px);
-  background-size: 48px 48px;
-  pointer-events: none;
-}
-
-.section-header {
-  position: relative; z-index: 1;
-  display: flex; align-items: flex-end;
-  justify-content: space-between; flex-wrap: wrap;
-  gap: 16px; margin-bottom: 48px;
-}
-
-.section-label {
-  font-size: 0.68rem; font-weight: 700;
-  letter-spacing: 3px; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 10px;
-}
-
-.section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
-  font-weight: 400; color: #fff; line-height: 1.2;
-}
-
-.section-count {
-  font-size: 0.78rem; color: rgba(255,255,255,0.30);
-  font-weight: 400; padding-bottom: 6px;
-}
-
-/* Cards grid */
-.cards-grid {
-  position: relative; z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 24px;
-}
-
-.tool-card {
-  background: linear-gradient(145deg, #0d1c35 0%, #0a1628 100%);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 14px;
-  padding: 32px;
-  display: flex; flex-direction: column;
-  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-  position: relative; overflow: hidden;
-}
-
-.tool-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--gold), transparent);
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-.tool-card:hover {
-  border-color: rgba(200,137,42,0.25);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-}
-.tool-card:hover::before { opacity: 1; }
-
-/* Coming soon card */
-.tool-card.coming-soon {
-  opacity: 0.45;
-  pointer-events: none;
-}
-
-.card-tag {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 0.65rem; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 18px;
-}
-.card-tag-dot {
-  width: 5px; height: 5px; border-radius: 50%;
-  background: var(--gold);
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-.tool-card.coming-soon .card-tag-dot { animation: none; background: #555; }
-.tool-card.coming-soon .card-tag { color: #555; }
-
-.card-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.55rem; font-weight: 600;
-  color: #fff; line-height: 1.2;
-  margin-bottom: 10px;
-}
-
-.card-meta {
-  display: flex; gap: 8px; flex-wrap: wrap;
-  margin-bottom: 14px;
-}
-.card-chip {
-  font-size: 0.65rem; font-weight: 600;
-  padding: 3px 9px; border-radius: 3px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.09);
-  color: rgba(255,255,255,0.50);
-  letter-spacing: 0.3px;
-}
-
-.card-desc {
-  font-size: 0.88rem; font-weight: 300;
-  color: rgba(255,255,255,0.52);
-  line-height: 1.7; flex: 1;
-  margin-bottom: 24px;
-}
-
-.card-features {
-  list-style: none; margin-bottom: 28px;
-}
-.card-features li {
-  font-size: 0.80rem; font-weight: 400;
-  color: rgba(255,255,255,0.42);
-  padding: 5px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  display: flex; align-items: center; gap: 8px;
-}
-.card-features li::before {
-  content: '→';
-  color: var(--gold); font-size: 0.75rem; flex-shrink: 0;
-}
-
-.card-footer {
-  display: flex; align-items: center; justify-content: space-between;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-
-.card-author {
-  font-size: 0.70rem; color: rgba(255,255,255,0.28);
-  font-weight: 400;
-}
-
-.card-cta {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 9px 18px;
-  background: rgba(200,137,42,0.12);
-  border: 1px solid rgba(200,137,42,0.35);
-  border-radius: 6px;
-  color: var(--gold2);
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.78rem; font-weight: 600;
-  text-decoration: none; letter-spacing: 0.3px;
-  transition: background 0.15s, border-color 0.15s;
-  cursor: pointer;
-}
-.card-cta:hover { background: rgba(200,137,42,0.22); border-color: rgba(200,137,42,0.6); }
-.card-cta-arrow { transition: transform 0.15s; }
-.card-cta:hover .card-cta-arrow { transform: translateX(3px); }
-
-.coming-label {
-  font-size: 0.70rem; font-weight: 600;
-  color: #555; letter-spacing: 1px; text-transform: uppercase;
-}
-
-/* ── ABOUT STRIP ── */
-.about-strip {
-  position: relative; z-index: 1;
-  background: linear-gradient(135deg, #0a1628 0%, #0f1e38 100%);
-  border-top: 1px solid rgba(200,137,42,0.15);
-  border-bottom: 1px solid rgba(200,137,42,0.15);
-  padding: 64px 6%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px; align-items: center;
-}
-
-.about-left {}
-.about-label {
-  font-size: 0.68rem; font-weight: 700;
-  letter-spacing: 3px; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 16px;
-}
-.about-h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
-  font-weight: 400; color: #fff; line-height: 1.25;
-}
-.about-h2 em { font-style: italic; color: var(--gold2); }
-
-.about-right {}
-.about-body {
-  font-size: 0.92rem; font-weight: 300;
-  color: rgba(255,255,255,0.55); line-height: 1.85;
-  margin-bottom: 20px;
-}
-.about-body strong { color: rgba(255,255,255,0.80); font-weight: 500; }
-
-.about-disclaimer {
-  font-size: 0.72rem; font-weight: 400;
-  color: rgba(255,255,255,0.28); line-height: 1.7;
-  border-left: 2px solid rgba(200,137,42,0.3);
-  padding-left: 14px;
-}
-
-/* ── FOOTER ── */
-.site-footer {
-  position: relative; z-index: 1;
-  background: #050b15;
-  padding: 40px 6%;
-  display: flex; align-items: center;
-  justify-content: space-between; flex-wrap: wrap;
-  gap: 16px;
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
-
-.footer-brand {
-  display: flex; align-items: center; gap: 12px;
-}
-.footer-badge {
-  font-size: 0.65rem; font-weight: 700;
-  letter-spacing: 2.5px; text-transform: uppercase;
-  color: var(--gold);
-  border: 1px solid rgba(200,137,42,0.3);
-  padding: 4px 10px; border-radius: 3px;
-}
-.footer-copy {
-  font-size: 0.72rem; color: rgba(255,255,255,0.22); font-weight: 300;
-}
-.footer-links {
-  display: flex; gap: 20px;
-}
-.footer-links a {
-  font-size: 0.72rem; color: rgba(255,255,255,0.28);
-  text-decoration: none; transition: color 0.15s;
-}
-.footer-links a:hover { color: rgba(255,255,255,0.65); }
-
-/* ── ANIMATIONS ── */
-@keyframes fadeup {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.hero-eyebrow { animation: fadeup 0.6s ease 0.1s both; }
-.hero-h1      { animation: fadeup 0.7s ease 0.22s both; }
-.hero-sub     { animation: fadeup 0.7s ease 0.34s both; }
-.hero-actions { animation: fadeup 0.7s ease 0.44s both; }
-.hero-stats   { animation: fadeup 0.7s ease 0.56s both; }
-
-/* Scroll-reveal for cards */
-.tool-card {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.2s, box-shadow 0.2s;
-}
-.tool-card.visible { opacity: 1; transform: translateY(0); }
-.tool-card.coming-soon.visible { opacity: 0.45; }
-
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
-  .hero-nav { padding: 20px 5%; }
-  .nav-links { display: none; }
-  .hero-body { padding: 50px 5% 40px; }
-  .about-strip { grid-template-columns: 1fr; gap: 32px; padding: 48px 5%; }
-  .tools-section { padding: 60px 5%; }
-  .cards-grid { grid-template-columns: 1fr; }
-  .hero-stats { gap: 24px; }
-}
+:root{--ink:#08111f;--ink2:#0d1c35;--gold:#c8892a;--gold2:#e8b84b;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--ink);color:#fff;overflow-x:hidden;user-select:none;-webkit-user-select:none;}
+body::before{content:'';position:fixed;inset:0;z-index:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;}
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 6%;background:rgba(8,17,31,0.88);backdrop-filter:blur(12px);border-bottom:1px solid rgba(200,137,42,0.12);}
+.nav-brand{display:flex;align-items:center;gap:12px;}
+.nav-badge{font-size:0.63rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(200,137,42,0.45);padding:5px 11px;border-radius:4px;}
+.nav-tagline{font-size:0.70rem;font-weight:300;color:rgba(255,255,255,0.30);letter-spacing:1.5px;}
+.nav-links{display:flex;gap:26px;}
+.nav-links a{font-size:0.78rem;font-weight:500;color:rgba(255,255,255,0.42);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:#fff;}
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;background:linear-gradient(160deg,#060d1a 0%,#0a1628 45%,#0f1e38 100%);overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(200,137,42,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(200,137,42,0.05) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;}
+.hero::after{content:'';position:absolute;top:-200px;right:-100px;width:700px;height:700px;background:radial-gradient(circle,rgba(200,137,42,0.09) 0%,transparent 65%);pointer-events:none;}
+.hero-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:140px 6% 80px;max-width:960px;}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:28px;}
+.eyebrow-line{width:36px;height:1px;background:var(--gold);opacity:0.7;}
+.eyebrow-text{font-size:0.66rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5.8rem);font-weight:300;line-height:1.06;color:#fff;letter-spacing:-0.02em;}
+.hero-h1 em{font-style:italic;color:var(--gold2);font-weight:300;}
+.hero-sub{margin-top:24px;font-size:clamp(0.90rem,1.4vw,1.02rem);font-weight:300;line-height:1.8;color:rgba(255,255,255,0.48);max-width:540px;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px;}
+.btn-gold{padding:13px 28px;background:linear-gradient(135deg,var(--gold) 0%,#b07720 100%);color:#fff;border:none;border-radius:8px;font-family:'Outfit',sans-serif;font-size:0.86rem;font-weight:600;text-decoration:none;letter-spacing:0.3px;box-shadow:0 4px 20px rgba(200,137,42,0.30);transition:transform 0.15s,box-shadow 0.15s;cursor:pointer;}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(200,137,42,0.40);}
+.btn-ghost{padding:13px 28px;background:transparent;color:rgba(255,255,255,0.60);border:1px solid rgba(255,255,255,0.16);border-radius:8px;font-family:'Outfit',sans-serif;font-size:0.86rem;font-weight:500;text-decoration:none;transition:border-color 0.15s,color 0.15s;}
+.btn-ghost:hover{border-color:rgba(200,137,42,0.5);color:#fff;}
+.hero-stats{display:flex;gap:48px;flex-wrap:wrap;margin-top:64px;padding-top:36px;border-top:1px solid rgba(255,255,255,0.07);}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:var(--gold2);line-height:1;}
+.stat-label{font-size:0.68rem;color:rgba(255,255,255,0.34);letter-spacing:0.5px;margin-top:5px;}
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(200,137,42,0.22),transparent);}
+.content-section{position:relative;z-index:1;padding:80px 6%;}
+.content-section::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(200,137,42,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(200,137,42,0.025) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.tools-section{background:#070e1a;}
+.research-section{background:#060c18;}
+.notes-section{background:#08111f;}
+.section-header{position:relative;z-index:1;margin-bottom:48px;}
+.section-label{font-size:0.63rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,2.8vw,2.4rem);font-weight:400;color:#fff;line-height:1.2;}
+.section-sub{font-size:0.83rem;font-weight:300;color:rgba(255,255,255,0.38);margin-top:8px;line-height:1.65;max-width:560px;}
+.cards-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:22px;}
+.card{background:linear-gradient(145deg,#0d1c35 0%,#0a1628 100%);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:26px;display:flex;flex-direction:column;position:relative;overflow:hidden;opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease,border-color 0.2s,box-shadow 0.2s;}
+.card.visible{opacity:1;transform:translateY(0);}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity 0.2s;}
+.card:hover{border-color:rgba(200,137,42,0.25);transform:translateY(-3px)!important;box-shadow:0 12px 40px rgba(0,0,0,0.4);}
+.card:hover::before{opacity:1;}
+.card.coming{opacity:0.38!important;pointer-events:none;transform:none!important;}
+.card-tag{display:inline-flex;align-items:center;gap:6px;font-size:0.60rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.tag-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:1.38rem;font-weight:600;color:#fff;line-height:1.2;margin-bottom:8px;}
+.card-chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px;}
+.chip{font-size:0.58rem;font-weight:600;padding:3px 8px;border-radius:3px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.42);letter-spacing:0.3px;}
+.card-hook{font-size:0.85rem;font-weight:600;color:rgba(255,255,255,0.78);line-height:1.5;margin-bottom:9px;font-style:italic;}
+.card-desc{font-size:0.80rem;font-weight:300;color:rgba(255,255,255,0.42);line-height:1.7;flex:1;margin-bottom:20px;}
+.card-features{list-style:none;margin-bottom:22px;}
+.card-features li{font-size:0.76rem;color:rgba(255,255,255,0.38);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:flex-start;gap:8px;}
+.card-features li::before{content:'→';color:var(--gold);font-size:0.70rem;flex-shrink:0;margin-top:1px;}
+.card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);margin-top:auto;}
+.card-author{font-size:0.65rem;color:rgba(255,255,255,0.22);}
+.card-cta{display:inline-flex;align-items:center;gap:5px;padding:8px 15px;background:rgba(200,137,42,0.10);border:1px solid rgba(200,137,42,0.30);border-radius:6px;color:var(--gold2);font-family:'Outfit',sans-serif;font-size:0.73rem;font-weight:600;text-decoration:none;transition:background 0.15s,border-color 0.15s;cursor:pointer;}
+.card-cta:hover{background:rgba(200,137,42,0.20);border-color:rgba(200,137,42,0.55);}
+.cta-arrow{transition:transform 0.15s;}
+.card-cta:hover .cta-arrow{transform:translateX(3px);}
+.coming-label{font-size:0.65rem;font-weight:600;color:#555;letter-spacing:1px;text-transform:uppercase;}
+.gaiq-visual{display:flex;gap:7px;margin:12px 0;flex-wrap:wrap;}
+.gaiq-pill{padding:5px 11px;border-radius:5px;font-size:0.68rem;font-weight:700;letter-spacing:0.4px;border:1px solid;}
+.gaiq-pill.pvi{background:rgba(200,137,42,0.12);border-color:rgba(200,137,42,0.35);color:var(--gold2);}
+.gaiq-pill.tfr{background:rgba(56,161,105,0.10);border-color:rgba(56,161,105,0.28);color:#68d391;}
+.gaiq-pill.erc{background:rgba(66,153,225,0.10);border-color:rgba(66,153,225,0.28);color:#90cdf4;}
+.sea-row{display:flex;align-items:center;gap:5px;margin:9px 0;}
+.sea-step{padding:4px 9px;border-radius:4px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.58);font-size:0.68rem;font-weight:600;letter-spacing:0.5px;}
+.sea-arrow{color:rgba(200,137,42,0.45);font-size:0.60rem;}
+.about-strip{position:relative;z-index:1;background:linear-gradient(135deg,#0a1628 0%,#0f1e38 100%);border-top:1px solid rgba(200,137,42,0.12);border-bottom:1px solid rgba(200,137,42,0.12);padding:64px 6%;display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:center;}
+.about-label{font-size:0.63rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.about-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,2.5vw,2.3rem);font-weight:400;color:#fff;line-height:1.25;}
+.about-h2 em{font-style:italic;color:var(--gold2);}
+.about-body{font-size:0.86rem;font-weight:300;color:rgba(255,255,255,0.48);line-height:1.85;margin-bottom:16px;}
+.about-body strong{color:rgba(255,255,255,0.76);font-weight:500;}
+.about-disclaimer{font-size:0.68rem;color:rgba(255,255,255,0.24);line-height:1.7;border-left:2px solid rgba(200,137,42,0.25);padding-left:14px;}
+.site-footer{position:relative;z-index:1;background:#050b15;padding:34px 6%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid rgba(255,255,255,0.05);}
+.footer-badge{font-size:0.60rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(200,137,42,0.28);padding:4px 10px;border-radius:3px;}
+.footer-copy{font-size:0.68rem;color:rgba(255,255,255,0.18);margin-left:10px;}
+.footer-links{display:flex;gap:18px;}
+.footer-links a{font-size:0.68rem;color:rgba(255,255,255,0.22);text-decoration:none;transition:color 0.15s;}
+.footer-links a:hover{color:rgba(255,255,255,0.58);}
+@keyframes fadeup{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.hero-eyebrow{animation:fadeup 0.6s ease 0.10s both;}
+.hero-h1{animation:fadeup 0.7s ease 0.22s both;}
+.hero-sub{animation:fadeup 0.7s ease 0.34s both;}
+.hero-actions{animation:fadeup 0.7s ease 0.44s both;}
+.hero-stats{animation:fadeup 0.7s ease 0.56s both;}
+@media(max-width:768px){.nav-links{display:none;}.hero-body{padding:120px 5% 60px;}.content-section{padding:56px 5%;}.about-strip{grid-template-columns:1fr;gap:32px;padding:48px 5%;}.cards-grid{grid-template-columns:1fr;}.hero-stats{gap:28px;}}
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════
-     HERO
-════════════════════════════════════════════════ -->
+<nav class="site-nav">
+  <div class="nav-brand">
+    <span class="nav-badge">#DK360</span>
+    <span class="nav-tagline">Think. Challenge. Lead.</span>
+  </div>
+  <div class="nav-links">
+    <a href="#tools">Tools</a>
+    <a href="#research">Research</a>
+    <a href="#signals">DK360 Signals</a>
+    <a href="about.html">About</a>
+    <a href="https://github.com/deepakkota360/dk360" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</nav>
+
 <section class="hero">
-  <nav class="hero-nav">
-    <div class="nav-brand">
-      <span class="nav-badge">#DK360</span>
-      <span class="nav-tagline">Think. Challenge. Lead.</span>
-    </div>
-    <div class="nav-links">
-      <a href="#tools">Tools &amp; Resources</a>
-      <a href="#about">About</a>
-      <a href="https://github.com/deepakkota360/dk360" target="_blank" rel="noopener">GitHub ↗</a>
-    </div>
-  </nav>
-
   <div class="hero-body">
-    <div class="hero-eyebrow">
-      <div class="hero-eyebrow-line"></div>
-      <span class="hero-eyebrow-text">Research · Advisory · Tools</span>
-    </div>
-
-    <h1 class="hero-h1">
-      Foresight.<br>
-      <em>POV.</em><br>
-      Action.
-    </h1>
-
-    <p class="hero-sub">
-      Independent research tools, governance frameworks and advisory resources
-      for leaders navigating complex, fast-moving decisions. Built for practice.
-      Grounded in evidence.
-    </p>
-
+    <div class="hero-eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Research · Tools · Advisory</span></div>
+    <h1 class="hero-h1">Foresight.<br><em>POV.</em><br>Action.</h1>
+    <p class="hero-sub">Independent research tools, governance frameworks and advisory resources for leaders navigating complex, fast-moving decisions. Built for practice. Grounded in evidence.</p>
     <div class="hero-actions">
-      <a href="#tools" class="btn-primary">Explore Tools →</a>
-      <a href="https://github.com/deepakkota360/dk360" target="_blank" rel="noopener" class="btn-ghost">View on GitHub</a>
+      <a href="#tools" class="btn-gold">Explore Tools →</a>
+      <a href="#signals" class="btn-ghost">DK360 Signals</a>
     </div>
-
     <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num">1</div>
-        <div class="stat-label">Tool available now</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">Free</div>
-        <div class="stat-label">Always, for practitioners</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">India</div>
-        <div class="stat-label">First edition · Global editions coming</div>
-      </div>
+      <div><div class="stat-num">1</div><div class="stat-label">Interactive tool live</div></div>
+      <div><div class="stat-num">8</div><div class="stat-label">DK360 Signals published</div></div>
+      <div><div class="stat-num">Free</div><div class="stat-label">Always, for practitioners</div></div>
     </div>
   </div>
 </section>
 
 <div class="section-divider"></div>
 
-<!-- ═══════════════════════════════════════════════
-     TOOLS / ARTEFACTS
-════════════════════════════════════════════════ -->
-<section class="tools-section" id="tools">
+<!-- TOOLS -->
+<section class="content-section tools-section" id="tools">
   <div class="section-header">
-    <div>
-      <div class="section-label">Tools &amp; Resources</div>
-      <h2 class="section-title">Available now &amp; coming soon</h2>
-    </div>
-    <span class="section-count">1 of 6 published</span>
+    <div class="section-label">Interactive Tools</div>
+    <h2 class="section-title">Download &amp; use offline</h2>
+    <p class="section-sub">Single-file HTML tools — complete a short survey and receive the file by email. Works fully offline once downloaded.</p>
   </div>
-
   <div class="cards-grid">
 
-    <!-- ── CARD 1: India AI Governance (LIVE) ── -->
-    <div class="tool-card">
-      <div class="card-tag">
-        <span class="card-tag-dot"></span>
-        Available now · India · AI Governance
-      </div>
+    <div class="card">
+      <div class="card-tag"><span class="tag-dot"></span>Live · v1.0 · India · AI Governance</div>
       <h3 class="card-title">India AI Governance Guidelines — Interactive Reference &amp; Tools</h3>
-      <div class="card-meta">
-        <span class="card-chip">Risk Assessment</span>
-        <span class="card-chip">Maturity Model</span>
-        <span class="card-chip">Board Ready</span>
-        <span class="card-chip">Offline</span>
-      </div>
-      <p class="card-desc">
-        MeitY's AI Governance Guidelines (2025–26) distilled into board-ready reading,
-        risk tools, maturity assessment, and evidence frameworks.
-        A single HTML file — works entirely offline once downloaded.
-      </p>
+      <div class="card-chips"><span class="chip">Risk Assessment</span><span class="chip">Maturity Model</span><span class="chip">Board Ready</span><span class="chip">Offline</span><span class="chip">MeitY 2025–26</span></div>
+      <p class="card-desc">MeitY's AI Governance Guidelines distilled into board-ready reading, risk tools, maturity assessment, and evidence frameworks. Grounded in published policy, built for practice.</p>
       <ul class="card-features">
-        <li>24-signal AI Governance Maturity Assessment</li>
-        <li>6-category Risk Scoring Engine with polarity-correct logic</li>
+        <li>24-signal Governance Maturity Assessment</li>
+        <li>6-category Risk Scoring Engine with correct polarity logic</li>
         <li>Standards Adoption Heatmap &amp; Tier Matrix</li>
-        <li>Board Evidence Checklist — CSV export</li>
-        <li>Enterprise Playbook &amp; Glossary</li>
+        <li>Board Evidence Checklist · CSV &amp; JSON export</li>
+        <li>Enterprise Playbook, Glossary &amp; Artefact Templates</li>
       </ul>
       <div class="card-footer">
-        <span class="card-author">by Deepak Kota · #DK360</span>
-        <a href="https://forms.gle/YOUR_FORM_ID" target="_blank" rel="noopener" class="card-cta">
-          Get Access <span class="card-cta-arrow">→</span>
-        </a>
+        <span class="card-author">Deepak Kota · #DK360 · 2026</span>
+        <a href="https://forms.gle/YOUR_FORM_ID_TOOL1" target="_blank" rel="noopener" class="card-cta">Get Access <span class="cta-arrow">→</span></a>
       </div>
     </div>
 
-    <!-- ── CARD 2: Coming soon ── -->
-    <div class="tool-card coming-soon">
-      <div class="card-tag">Coming soon · Global</div>
+    <div class="card coming">
+      <div class="card-tag">Coming · Global · AI Governance</div>
       <h3 class="card-title">AI Governance Comparative Framework</h3>
-      <div class="card-meta">
-        <span class="card-chip">EU AI Act</span>
-        <span class="card-chip">NIST AI RMF</span>
-        <span class="card-chip">India Guidelines</span>
-      </div>
-      <p class="card-desc">
-        Side-by-side comparison of major global AI governance frameworks —
-        EU AI Act, NIST AI RMF, and India Guidelines —
-        mapped to practical controls and board evidence requirements.
-      </p>
-      <ul class="card-features">
-        <li>Cross-framework obligation mapping</li>
-        <li>Jurisdiction risk tiering comparison</li>
-        <li>Gap analysis tool</li>
-      </ul>
-      <div class="card-footer">
-        <span class="card-author">by Deepak Kota · #DK360</span>
-        <span class="coming-label">Notify me</span>
-      </div>
+      <div class="card-chips"><span class="chip">EU AI Act</span><span class="chip">NIST AI RMF</span><span class="chip">India Guidelines</span></div>
+      <p class="card-desc">EU AI Act, NIST AI RMF, and India Guidelines mapped side-by-side to practical controls and board evidence requirements.</p>
+      <ul class="card-features"><li>Cross-framework obligation mapping</li><li>Gap analysis tool</li><li>Jurisdiction risk tier comparison</li></ul>
+      <div class="card-footer"><span class="card-author">Deepak Kota · #DK360</span><span class="coming-label">Coming Q3 2026</span></div>
     </div>
 
-    <!-- ── CARD 3: Coming soon ── -->
-    <div class="tool-card coming-soon">
-      <div class="card-tag">Coming soon · Strategy</div>
-      <h3 class="card-title">Board AI Readiness Scorecard</h3>
-      <div class="card-meta">
-        <span class="card-chip">Board Oversight</span>
-        <span class="card-chip">Governance</span>
+    <div class="card coming">
+      <div class="card-tag">Coming · GenAI Strategy</div>
+      <h3 class="card-title">GAIQ Framework — GenAI Prioritisation Tool</h3>
+      <div class="card-chips"><span class="chip">GenAI Strategy</span><span class="chip">Investment</span><span class="chip">Governance</span></div>
+      <p class="card-desc">Interactive implementation of the GAIQ framework — qualifying GenAI use cases across PVI, TFR and ERC with NEXA/NOVA investment instruments.</p>
+      <ul class="card-features"><li>SEA: Scan → Evaluate → Activate</li><li>Weighted threshold scoring</li><li>Use case portfolio view</li></ul>
+      <div class="card-footer"><span class="card-author">Deepak Kota · #DK360</span><span class="coming-label">Coming 2026</span></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- RESEARCH -->
+<section class="content-section research-section" id="research">
+  <div class="section-header">
+    <div class="section-label">Published Research</div>
+    <h2 class="section-title">Peer-reviewed &amp; academic work</h2>
+    <p class="section-sub">Full papers available on ResearchGate. Expanded interactive tools built from each framework are in development.</p>
+  </div>
+  <div class="cards-grid">
+
+    <div class="card" style="border-color:rgba(200,137,42,0.14);">
+      <div class="card-tag"><span class="tag-dot"></span>ResearchGate · 2024 · GenAI Strategy</div>
+      <h3 class="card-title">A Decision-Making Framework for Prioritising AI Adoption Across Enterprises</h3>
+      <div class="card-chips"><span class="chip">GAIQ Framework</span><span class="chip">PVI · TFR · ERC</span><span class="chip">NEXA · NOVA</span><span class="chip">Design Science</span></div>
+      <p class="card-hook">"Technology is moving faster than governance, compliance and funding can keep up."</p>
+      <div class="gaiq-visual">
+        <span class="gaiq-pill pvi">PVI — Strategic Value</span>
+        <span class="gaiq-pill tfr">TFR — Technology Readiness</span>
+        <span class="gaiq-pill erc">ERC — Ethics &amp; Risk</span>
       </div>
-      <p class="card-desc">
-        A structured assessment for boards evaluating their AI oversight posture —
-        covering policy, accountability, risk appetite, and evidence readiness.
-      </p>
+      <div class="sea-row">
+        <span class="sea-step">Scan</span><span class="sea-arrow">→</span>
+        <span class="sea-step">Evaluate</span><span class="sea-arrow">→</span>
+        <span class="sea-step">Activate</span>
+      </div>
+      <p class="card-desc">A design-science-based, gate-driven model for qualifying GenAI use cases. Use cases that are strategically attractive but weak in ethics or technology cannot advance. Validated on simulated enterprise scenarios — more consistent, auditable, and business-aligned than generic AI maturity models.</p>
       <ul class="card-features">
-        <li>Board-level governance maturity signals</li>
-        <li>Quarterly oversight pack template</li>
-        <li>Director briefing format</li>
+        <li>Three-dimension qualification: PVI · TFR · ERC</li>
+        <li>NEXA &amp; NOVA investment decision instruments</li>
+        <li>Ethics gates cannot be bypassed by strategic attractiveness</li>
+        <li>Closes gap between AI strategy and operational implementation</li>
       </ul>
       <div class="card-footer">
-        <span class="card-author">by Deepak Kota · #DK360</span>
-        <span class="coming-label">Coming Q3 2026</span>
+        <span class="card-author">Deepak Kota · ResearchGate · 2024</span>
+        <a href="https://www.researchgate.net/publication/400092166_A_DECISION-MAKING_FRAMEWORK_FOR_PRIORITIZING_AI_ADOPTION_ACROSS_ENTERPRISES" target="_blank" rel="noopener" class="card-cta">Read Paper <span class="cta-arrow">→</span></a>
       </div>
     </div>
 
@@ -644,69 +230,134 @@ body::before {
 
 <div class="section-divider"></div>
 
-<!-- ═══════════════════════════════════════════════
-     ABOUT
-════════════════════════════════════════════════ -->
-<section class="about-strip" id="about">
-  <div class="about-left">
-    <div class="about-label">About DK360</div>
-    <h2 class="about-h2">
-      Independent thinking<br>for <em>complex decisions</em>
-    </h2>
+<!-- DK360 NOTES -->
+<section class="content-section notes-section" id="signals">
+  <div class="section-header">
+    <div class="section-label">DK360 Signals</div>
+    <h2 class="section-title">Signals for leaders</h2>
+    <p class="section-sub">Short, sharp, data-grounded. Each Signal surfaces a blind spot, names the tension, and asks the question that matters.</p>
   </div>
-  <div class="about-right">
-    <p class="about-body">
-      <strong>#DK360</strong> is an independent research and advisory practice by
-      <strong>Deepak Kota</strong> — focused on helping leaders and organisations
-      navigate governance, strategy and emerging technology through structured
-      foresight, clear POV, and actionable frameworks.
-    </p>
-    <p class="about-body">
-      All tools published here are the result of independent research and are
-      made freely available to practitioners, boards, and policy professionals.
-    </p>
-    <p class="about-disclaimer">
-      All resources are published for research, learning and informational purposes only.
-      They do not constitute legal, regulatory or professional advice.
-      Users should seek qualified advice before making governance or compliance decisions.
-    </p>
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-tag"><span class="tag-dot"></span>GenAI · Execution · Scaling</div>
+      <h3 class="card-title">The Pilot Trap</h3>
+      <div class="card-chips"><span class="chip">GenAI</span><span class="chip">Execution</span><span class="chip">Scaling</span></div>
+      <p class="card-hook">95% of enterprise GenAI pilots deliver no measurable P&amp;L impact. The gap is not technical.</p>
+      <p class="card-desc">MIT and McKinsey point the same direction: only 1% of companies are truly mature in GenAI deployment. The real challenge is governance, change management, operating models, and accountability — not model selection or vendor choice.</p>
+      <div class="card-footer"><span class="card-author">Deepak Kota · #DK360</span><a href="YOUR_LINKEDIN_URL_1" target="_blank" rel="noopener" class="card-cta">Read Note <span class="cta-arrow">→</span></a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-tag"><span class="tag-dot"></span>D2C · AI Agents · Commerce</div>
+      <h3 class="card-title">After the Click: The D2C Reckoning</h3>
+      <div class="card-chips"><span class="chip">D2C</span><span class="chip">AI Agents</span><span class="chip">Commerce</span></div>
+      <p class="card-hook">DTC brands cut out middlemen. AI agents are becoming the new middlemen — with zero brand influence over them.</p>
+      <p class="card-desc">Adobe confirms GenAI-driven retail traffic surged 693% YoY in 2025. Over one-third of shoppers now use AI assistants for purchase decisions. Every dollar in website optimisation and influencer content is becoming stranded investment.</p>
+      <div class="card-footer"><span class="card-author">Deepak Kota · #DK360</span><a href="YOUR_LINKEDIN_URL_2" target="_blank" rel="noopener" class="card-cta">Read Note <span class="cta-arrow">→</span></a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-tag"><span class="tag-dot"></span>AI Economics · ROI · Governance</div>
+      <h3 class="card-title">The 280x Factor</h3>
+      <div class="card-chips"><span class="chip">Inference Costs</span><span class="chip">AI ROI</span><span class="chip">Governance</span></div>
+      <p class="card-hook">Inference costs dropped 280-fold in two years. Experimentation is now cheap. Accountability for outcomes is not keeping pace.</p>
+      <p class="card-desc">Stanford's AI Index confirms the reset in deployment economics. Yet governance frameworks for measuring actual business impact haven't evolved. The blind spot: optimising cost per experiment rather than sustained value delivery at scale.</p>
+      <div class="card-footer"><span class="card-author">Deepak Kota · #DK360</span><a href="YOUR_LINKEDIN_URL_3" target="_blank" rel="noopener" class="card-cta">Read Note <span class="cta-arrow">→</span></a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-tag"><span class="tag-dot"></span>GCC · India · Operating Model</div>
+      <h3 class="card-title">The GCC Identity Crisis</h3>
+      <div class="card-chips"><span class="chip">GCC</span><span class="chip">India</span><span class="chip">AI Strategy</span></div>
+      <p class="card-hook">India hosts 50% of the world's GCCs. Cost and scale is no longer the differentiator — and AI is absorbing the execution layer GCCs were built to scale.</p>
+      <p class="card-desc">NASSCOM 2025: 50% of centres have evolved into transformation hubs. ER&amp;D capabilities growing 1.3x faster than overall GCC growth. Boards expect innovation value beyond cost arbitrage — but measurement frameworks remain underdeveloped.</p>
+      <div class="card-footer"><span class="card-author">Deepak Kota · #DK360</span><a href="YOUR_LINKEDIN_URL_4" target="_blank" rel="noopener" class="card-cta">Read Note <span class="cta-arrow">→</span></a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-tag"><span class="tag-dot"></span>Privacy · Regulation · Consumer</div>
+      <h3 class="card-title">The Privacy Paradox</h3>
+      <div class="card-chips"><span class="chip">Privacy</span><span class="chip">Regulation</span><span class="chip">Consumer</span></div>
+      <p class="card-hook">Only 39% of consumers believe organisations handle their data responsibly. Every personalisation strategy depends on those same consumers sharing more.</p>
+      <p class="card-desc">Three forces converging: regulatory compression (170+ countries tightening), end of third-party tracking, and Gen Z as dominant consumer by 2027. Organisations have an 18–24 month window to adapt on their own terms.</p>
+      <div class="card-footer"><span class="card-author">Deepak Kota · #DK360</span><a href="YOUR_LINKEDIN_URL_5" target="_blank" rel="noopener" class="card-cta">Read Note <span class="cta-arrow">→</span></a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-tag"><span class="tag-dot"></span>Cyber · Vendor Risk · Resilience</div>
+      <h3 class="card-title">The Third-Party Blind Spot</h3>
+      <div class="card-chips"><span class="chip">Cyber</span><span class="chip">Vendor Risk</span><span class="chip">Resilience</span></div>
+      <p class="card-hook">Third-party involvement in breaches doubled to 30%. As internal defences strengthen, threat actors systematically target the vendor ecosystem.</p>
+      <p class="card-desc">Verizon DBIR 2025: vulnerability exploitation jumped 34% YoY. The real challenge is designing operations that assume third-party failures will occur — and building resilience accordingly.</p>
+      <div class="card-footer"><span class="card-author">Deepak Kota · #DK360</span><a href="YOUR_LINKEDIN_URL_6" target="_blank" rel="noopener" class="card-cta">Read Note <span class="cta-arrow">→</span></a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-tag"><span class="tag-dot"></span>Cyber Insurance · Board Risk</div>
+      <h3 class="card-title">The Cyber Insurance Illusion</h3>
+      <div class="card-chips"><span class="chip">Cyber Insurance</span><span class="chip">Board Risk</span><span class="chip">Resilience</span></div>
+      <p class="card-hook">Confidence is rising. Protection is not. The risk is not buying insurance — it is believing it changes the survival curve.</p>
+      <p class="card-desc">Munich Re: modelled accumulation potential USD 20–46B against USD 16.3B in premiums. IAIS warns systemic cyber events could destabilise insurers themselves. The uninsured layer is where operational survival actually sits.</p>
+      <div class="card-footer"><span class="card-author">Deepak Kota · #DK360</span><a href="YOUR_LINKEDIN_URL_7" target="_blank" rel="noopener" class="card-cta">Read Note <span class="cta-arrow">→</span></a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-tag"><span class="tag-dot"></span>Responsible AI · Accountability · Trust</div>
+      <h3 class="card-title">The AI Accountability Void</h3>
+      <div class="card-chips"><span class="chip">Responsible AI</span><span class="chip">Governance</span><span class="chip">Trust</span></div>
+      <p class="card-hook">When decisions scale faster than responsibility. Average Responsible AI maturity: 2.0 out of 4 across 750+ leaders in 38 countries.</p>
+      <p class="card-desc">PwC 2025: 56% place Responsible AI under first-line teams, yet half still struggle to turn principles into repeatable processes. In 2025, a major consulting firm refunded fees after AI fabrications appeared in a government report — undisclosed until errors surfaced.</p>
+      <div class="card-footer"><span class="card-author">Deepak Kota · #DK360</span><a href="YOUR_LINKEDIN_URL_8" target="_blank" rel="noopener" class="card-cta">Read Note <span class="cta-arrow">→</span></a></div>
+    </div>
+
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════════════ -->
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section class="about-strip" id="about">
+  <div>
+    <div class="about-label">About DK360</div>
+    <h2 class="about-h2">Independent thinking<br>for <em>complex decisions</em></h2>
+  </div>
+  <div>
+    <p class="about-body"><strong>#DK360</strong> is an independent research and advisory practice by <strong>Deepak Kota</strong> — focused on helping leaders navigate governance, strategy and emerging technology through structured foresight, clear POV, and actionable frameworks.</p>
+    <p class="about-body">All tools are made freely available to practitioners, boards, and policy professionals. Research is published for the community. DK360 Signals are published on LinkedIn.</p>
+    <p class="about-disclaimer">All resources are published for research, learning and informational purposes only. They do not constitute legal, regulatory or professional advice. Users should seek qualified advice before making governance or compliance decisions. © 2026 Deepak Kota. All rights reserved. CC BY-NC-ND 4.0.</p>
+  </div>
+</section>
+
 <footer class="site-footer">
-  <div class="footer-brand">
+  <div style="display:flex;align-items:center;">
     <span class="footer-badge">#DK360</span>
     <span class="footer-copy">© 2026 Deepak Kota. All rights reserved.</span>
   </div>
   <div class="footer-links">
     <a href="https://github.com/deepakkota360/dk360" target="_blank" rel="noopener">GitHub</a>
     <a href="https://github.com/deepakkota360/dk360/blob/main/README.md" target="_blank" rel="noopener">Disclaimer</a>
-    <a href="mailto:deepak@dk360.com">Contact</a>
   </div>
 </footer>
 
 <script>
-// Scroll reveal for cards
+document.addEventListener('contextmenu',function(e){e.preventDefault();});
+document.addEventListener('keydown',function(e){
+  if(e.key==='F12')e.preventDefault();
+  if(e.ctrlKey&&e.shiftKey&&(e.key==='I'||e.key==='J'||e.key==='C'))e.preventDefault();
+  if(e.ctrlKey&&(e.key==='u'||e.key==='U'||e.key==='s'||e.key==='S'))e.preventDefault();
+});
+document.addEventListener('selectstart',function(e){e.preventDefault();});
 (function(){
-  var cards = document.querySelectorAll('.tool-card');
-  if(!('IntersectionObserver' in window)){
-    cards.forEach(function(c){ c.classList.add('visible'); });
-    return;
-  }
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e, i){
-      if(e.isIntersecting){
-        setTimeout(function(){ e.target.classList.add('visible'); }, i * 80);
-        obs.unobserve(e.target);
-      }
+  var cards=document.querySelectorAll('.card:not(.coming)');
+  if(!('IntersectionObserver' in window)){cards.forEach(function(c){c.classList.add('visible');});return;}
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e,i){
+      if(e.isIntersecting){setTimeout(function(){e.target.classList.add('visible');},i*60);obs.unobserve(e.target);}
     });
-  }, { threshold: 0.08 });
-  cards.forEach(function(c){ obs.observe(c); });
+  },{threshold:0.06});
+  cards.forEach(function(c){obs.observe(c);});
 })();
 </script>
-
 </body>
 </html>
